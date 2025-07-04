@@ -1,0 +1,134 @@
+{
+  "CARCASSE 400": {
+    "1T": {
+      "B1T_D4_BF": {
+        "description": "Body 1T Depth 400 Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "B1T_D4_WF": {
+        "description": "Body 1T Depth 400 White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "B1.5T_D4_BF": {
+        "description": "Body 1.5T Depth 400 Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "B1.5T_D4_WF": {
+        "description": "Body 1.5T Depth 400 White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2T": {
+      "B2T_D4_BF": {
+        "description": "Body 2T Depth 400 Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "B2T_D4_WF": {
+        "description": "Body 2T Depth 400 White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3T": {
+      "B3T_D4_BF": {
+        "description": "Body 3T Depth 400 Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "B3T_D4_WF": {
+        "description": "Body 3T Depth 400 White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "CARCASSE 600": {
+    "1T": {
+      "B1T_D6_BF": {
+        "description": "Body 1T Depth 600 Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "B1T_D6_WF": {
+        "description": "Body 1T Depth 600 White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "B1.5T_D6_BF": {
+        "description": "Body 1.5T Depth 600 Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "B1.5T_D6_WF": {
+        "description": "Body 1.5T Depth 600 White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2T": {
+      "B2T_D6_BF": {
+        "description": "Body 2T Depth 600 Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "B2T_D6_WF": {
+        "description": "Body 2T Depth 600 White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3T": {
+      "B3T_D6_BF": {
+        "description": "Body 3T Depth 600 Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "B3T_D6_WF": {
+        "description": "Body 3T Depth 600 White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "FULL STOCK INSERT": {
+    "1T": {
+      "FS_B1T_BF": {
+        "description": "Full Stock Body 1T Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "FS_B1.5T_BF": {
+        "description": "Full Stock Body 1.5T Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "OPEN STOCK INSERT": {
+    "1T": {
+      "OS_B1T_BF": {
+        "description": "Open Stock Body 1T Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "OS_B1.5T_BF": {
+        "description": "Open Stock Body 1.5T Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  }
+}
