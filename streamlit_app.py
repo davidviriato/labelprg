@@ -10,7 +10,7 @@ from reportlab.lib.units import mm
 from reportlab.graphics.barcode import qr
 from reportlab.graphics.shapes import Drawing
 from reportlab.graphics import renderPDF
-from reportlab.lib.colors import black, gray
+from reportlab.lib.colors import black
 
 # =============================================================================
 # 2. FUNÇÕES AUXILIARES
@@ -23,10 +23,10 @@ def load_data():
         with open('data.json', 'r', encoding='utf-8') as f:
             return json.load(f)
     except FileNotFoundError:
-        st.error("ERRO: Ficheiro 'data.json' não encontrado! Verifique se o ficheiro existe no projeto.")
+        st.error("ERRO: Ficheiro 'data.json' não encontrado! Verifique se o ficheiro existe no seu repositório GitHub.")
         return {}
     except json.JSONDecodeError:
-        st.error("ERRO: O ficheiro 'data.json' contém um erro de formatação. Verifique a sintaxe.")
+        st.error("ERRO: O ficheiro 'data.json' contém um erro de formatação. Verifique a sintaxe (ex: vírgulas, aspas).")
         return {}
 
 def gerar_pdf(product_ref, product_details):
@@ -138,7 +138,7 @@ if data:
     selected_level1 = st.selectbox('Passo 1: Selecione a Categoria Principal', level1_options)
 
     level2_options = list(data.get(selected_level1, {}).keys())
-    selected_level2 = st.selectbox('Passo 2: Selecione a Sub-Categoria', level2_options) # <-- LINHA CORRIGIDA
+    selected_level2 = st.selectbox('Passo 2: Selecione a Sub-Categoria', level2_options)
 
     ref_options = list(data.get(selected_level1, {}).get(selected_level2, {}).keys())
     selected_ref = st.selectbox('Passo 3: Selecione a Referência Final', ref_options)
@@ -149,13 +149,21 @@ if data:
         if selected_ref:
             try:
                 details = data[selected_level1][selected_level2][selected_ref]
-                pdf_buffer = gerar_pdf(selected_ref, details)
-                st.download_button(
-                    label="✔️ Download do PDF pronto",
-                    data=pdf_buffer,
-                    file_name=f"etiquetas_{selected_ref}.pdf",
-                    mime="application/pdf"
-                )
+                
+                # ===== ESTA É A NOVA VERIFICAÇÃO INTELIGENTE =====
+                if not details.get('components'):
+                    st.warning("Este produto não tem componentes definidos no 'data.json'. Não é possível gerar etiquetas.")
+                else:
+                    # Se houver componentes, gera o PDF e o botão de download
+                    pdf_buffer = gerar_pdf(selected_ref, details)
+                    st.download_button(
+                        label="✔️ Download do PDF pronto",
+                        data=pdf_buffer,
+                        file_name=f"etiquetas_{selected_ref}.pdf",
+                        mime="application/pdf"
+                    )
+                # ===============================================
+
             except Exception as e:
                 st.error(f"Ocorreu um erro ao gerar o PDF: {e}")
                 st.exception(e)
