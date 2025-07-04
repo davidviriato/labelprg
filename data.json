@@ -4,7 +4,23 @@
       "B1T_D4_BF": {
         "description": "Body 1T Depth 400 Black Finishing",
         "imagem_geral": "images/placeholder.png",
-        "components": []
+        "components": [
+          {
+            "name": "Painel Principal Preto",
+            "dims": "1000x400mm",
+            "imagem": "images/placeholder.png"
+          },
+          {
+            "name": "Prateleira Interna",
+            "dims": "980x380mm",
+            "imagem": "images/placeholder.png"
+          },
+          {
+            "name": "Kit de Ferragens A",
+            "dims": "N/A",
+            "imagem": "images/placeholder.png"
+          }
+        ]
       },
       "B1T_D4_WF": {
         "description": "Body 1T Depth 400 White Finishing",
