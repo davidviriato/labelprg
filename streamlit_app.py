@@ -7,7 +7,7 @@ import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
-from reportlab.graphics.barcode import qr, code128 # Mantemos a importação principal
+from reportlab.graphics.barcode import qr, code128 # Usar a importação correta
 from reportlab.graphics.shapes import Drawing
 from reportlab.graphics import renderPDF
 from reportlab.lib.colors import black
@@ -30,7 +30,7 @@ def load_data():
         return {}
 
 # =============================================================================
-# VERSÃO 6: FUNÇÃO GERAR_PDF COM CORREÇÃO DE CONTEÚDO E LAYOUT DO CÓDIGO DE BARRAS
+# VERSÃO 7: FUNÇÃO GERAR_PDF COM CORREÇÃO FINAL DO CÓDIGO DE BARRAS
 # =============================================================================
 def gerar_pdf_preciso(product_ref, product_details, quantity):
     """Gera um PDF com um layout de etiqueta preciso, replicando a imagem final."""
@@ -40,6 +40,7 @@ def gerar_pdf_preciso(product_ref, product_details, quantity):
     p.setTitle(f"Etiquetas para {product_ref}")
 
     for i in range(quantity):
+        # --- Definições Globais da Etiqueta ---
         label_width = 140*mm
         label_height = 80*mm
         x0 = (largura_pagina - label_width) / 2
@@ -48,6 +49,7 @@ def gerar_pdf_preciso(product_ref, product_details, quantity):
         p.saveState()
         p.setStrokeColor(black)
         
+        # --- Desenho da Grelha Estrutural ---
         p.setLineWidth(1)
         p.rect(x0, y0, label_width, label_height)
 
@@ -60,20 +62,22 @@ def gerar_pdf_preciso(product_ref, product_details, quantity):
         p.line(v_line2_x, y0, v_line2_x, y0 + label_height)
         p.line(v_line1_x, h_line_y, v_line2_x, h_line_y)
         
+        # --- Secção Esquerda: "Made in Portugal" e Código de Barras ---
         p.setFont("Helvetica", 6)
         p.drawString(x0 + 2*mm, y0 + label_height - 5*mm, "Made in Portugal")
         p.drawString(x0 + 2*mm, y0 + label_height - 8*mm, "© Chanel")
         
         # ## --- SECÇÃO DO CÓDIGO DE BARRAS (VERSÃO FINAL COM CORREÇÕES) --- ##
         barcode_value = product_ref
-        # MUDANÇA 1: Usar Code128B para garantir a codificação correta de letras e números.
-        # MUDANÇA 2: Reduzir barWidth e ajustar barHeight para controlar as dimensões.
-        barcode = code128.Code128B(barcode_value, barHeight=65*mm, barWidth=0.20*mm, humanReadable=False)
+        
+        # MUDANÇA 1: Voltar a usar a classe correta 'code128.Code128'
+        # MUDANÇA 2: Manter os ajustes de dimensões para o layout
+        barcode = code128.Code128(barcode_value, barHeight=65*mm, barWidth=0.20*mm, humanReadable=False)
         
         barcode_width = barcode.width
         
-        center_x = x0 + 12.5*mm # Centro da célula do código de barras
-        center_y = y0 + 40*mm   # Centro da célula do código de barras
+        center_x = x0 + 12.5*mm
+        center_y = y0 + 40*mm
         
         p.saveState()
         p.translate(center_x, center_y)
@@ -85,6 +89,7 @@ def gerar_pdf_preciso(product_ref, product_details, quantity):
         p.drawCentredString(center_x, y0 + 5*mm, barcode_value)
         # ## --- FIM DA SECÇÃO CORRIGIDA --- ##
 
+        # --- Secção Central Superior: Imagem do Produto ---
         img_x, img_y = v_line1_x, h_line_y
         img_w, img_h = v_line2_x - v_line1_x, label_height - (h_line_y - y0)
         try:
@@ -93,6 +98,7 @@ def gerar_pdf_preciso(product_ref, product_details, quantity):
         except IOError:
             p.drawCentredString(img_x + img_w/2, img_y + img_h/2, "Imagem não encontrada.")
 
+        # --- Secção Central Inferior: Bloco de Texto ---
         text_x = v_line1_x + 4*mm
         text_y = h_line_y - 8*mm
         
@@ -105,6 +111,7 @@ def gerar_pdf_preciso(product_ref, product_details, quantity):
         p.setFont("Helvetica", 10)
         p.drawString(text_x, text_y - 13*mm, product_details.get('description', ''))
 
+        # --- Secção Direita: QR Code e Caixa "0" ---
         box_x, box_y = v_line2_x, h_line_y
         box_w, box_h = label_width - (v_line2_x - x0), label_height - (h_line_y - y0)
         p.setLineWidth(0.3)
@@ -114,12 +121,14 @@ def gerar_pdf_preciso(product_ref, product_details, quantity):
 
         qr_x, qr_y = v_line2_x, y0
         qr_w, qr_h = box_w, h_line_y - y0
+        
         qr_data = f"REF:{product_ref}"
         qr_code = qr.QrCodeWidget(qr_data)
         qr_bounds = qr_code.getBounds()
         qr_code_width = qr_bounds[2] - qr_bounds[0]
         qr_size = min(qr_w, qr_h) - 4*mm
         escala = qr_size / qr_code_width
+        
         desenho = Drawing(qr_size, qr_size, transform=[escala, 0, 0, escala, 0, 0])
         desenho.add(qr_code)
         renderPDF.draw(desenho, p, qr_x + (qr_w - qr_size)/2, qr_y + (qr_h - qr_size)/2)
