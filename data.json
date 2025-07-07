@@ -2,27 +2,13 @@
   "CARCASSE 400": {
     "1T": {
       "B1T_D4_BF": {
+        "ref_best": "CHA_IDS_B1T_D4_BF",
         "description": "Body 1T Depth 400 Black Finishing",
         "imagem_geral": "images/placeholder.png",
-        "components": [
-          {
-            "name": "Painel Principal Preto",
-            "dims": "1000x400mm",
-            "imagem": "images/placeholder.png"
-          },
-          {
-            "name": "Prateleira Interna",
-            "dims": "980x380mm",
-            "imagem": "images/placeholder.png"
-          },
-          {
-            "name": "Kit de Ferragens A",
-            "dims": "N/A",
-            "imagem": "images/placeholder.png"
-          }
-        ]
+        "components": []
       },
       "B1T_D4_WF": {
+        "ref_best": "CHA_IDS_B1T_D4_WF",
         "description": "Body 1T Depth 400 White Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
@@ -30,11 +16,13 @@
     },
     "1.5T": {
       "B1.5T_D4_BF": {
+        "ref_best": "CHA_IDS_B1.5T_D4_BF",
         "description": "Body 1.5T Depth 400 Black Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
       },
       "B1.5T_D4_WF": {
+        "ref_best": "CHA_IDS_B1.5T_D4_WF",
         "description": "Body 1.5T Depth 400 White Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
@@ -42,11 +30,13 @@
     },
     "2T": {
       "B2T_D4_BF": {
+        "ref_best": "CHA_IDS_B2T_D4_BF",
         "description": "Body 2T Depth 400 Black Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
       },
       "B2T_D4_WF": {
+        "ref_best": "CHA_IDS_B2T_D4_WF",
         "description": "Body 2T Depth 400 White Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
@@ -54,11 +44,13 @@
     },
     "3T": {
       "B3T_D4_BF": {
+        "ref_best": "CHA_IDS_B3T_D4_BF",
         "description": "Body 3T Depth 400 Black Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
       },
       "B3T_D4_WF": {
+        "ref_best": "CHA_IDS_B3T_D4_WF",
         "description": "Body 3T Depth 400 White Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
@@ -68,11 +60,13 @@
   "CARCASSE 600": {
     "1T": {
       "B1T_D6_BF": {
+        "ref_best": "CHA_IDS_B1T_D6_BF",
         "description": "Body 1T Depth 600 Black Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
       },
       "B1T_D6_WF": {
+        "ref_best": "CHA_IDS_B1T_D6_WF",
         "description": "Body 1T Depth 600 White Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
@@ -80,11 +74,13 @@
     },
     "1.5T": {
       "B1.5T_D6_BF": {
+        "ref_best": "CHA_IDS_B1.5T_D6_BF",
         "description": "Body 1.5T Depth 600 Black Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
       },
       "B1.5T_D6_WF": {
+        "ref_best": "CHA_IDS_B1.5T_D6_WF",
         "description": "Body 1.5T Depth 600 White Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
@@ -92,11 +88,13 @@
     },
     "2T": {
       "B2T_D6_BF": {
+        "ref_best": "CHA_IDS_B2T_D6_BF",
         "description": "Body 2T Depth 600 Black Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
       },
       "B2T_D6_WF": {
+        "ref_best": "CHA_IDS_B2T_D6_WF",
         "description": "Body 2T Depth 600 White Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
@@ -104,11 +102,13 @@
     },
     "3T": {
       "B3T_D6_BF": {
+        "ref_best": "CHA_IDS_B3T_D6_BF",
         "description": "Body 3T Depth 600 Black Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
       },
       "B3T_D6_WF": {
+        "ref_best": "CHA_IDS_B3T_D6_WF",
         "description": "Body 3T Depth 600 White Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
@@ -118,6 +118,7 @@
   "FULL STOCK INSERT": {
     "1T": {
       "FS_B1T_BF": {
+        "ref_best": "CHA_IDS_SP_FS_B1T",
         "description": "Full Stock Body 1T Black Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
@@ -125,6 +126,7 @@
     },
     "1.5T": {
       "FS_B1.5T_BF": {
+        "ref_best": "CHA_IDS_SP_FS_B1.5T",
         "description": "Full Stock Body 1.5T Black Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
@@ -134,6 +136,7 @@
   "OPEN STOCK INSERT": {
     "1T": {
       "OS_B1T_BF": {
+        "ref_best": "CHA_IDS_SP_OS_B1T",
         "description": "Open Stock Body 1T Black Finishing",
         "imagem_geral": "images/placeholder.png",
         "components": []
@@ -141,7 +144,748 @@
     },
     "1.5T": {
       "OS_B1.5T_BF": {
+        "ref_best": "CHA_IDS_SP_OS_B1.5T",
         "description": "Open Stock Body 1.5T Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "HIDDEN STOCK INSERT": {
+    "1T": {
+      "HS_B1T_BF": {
+        "ref_best": "CHA_IDS_SP_HS_B1T_BF",
+        "description": "Hidden Stock Body 1T Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "HS_B1T_WF": {
+        "ref_best": "CHA_IDS_SP_HS_B1T_WF",
+        "description": "Hidden Stock Body 1T White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "HS_B1.5T_BF": {
+        "ref_best": "CHA_IDS_SP_HS_B1.5T_BF",
+        "description": "Hidden Stock Body 1.5T Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "HS_B1.5T_WF": {
+        "ref_best": "CHA_IDS_SP_HS_B1.5T_WF",
+        "description": "Hidden Stock Body 1.5T White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2TL": {
+      "HS_B2TL_BF": {
+        "ref_best": "",
+        "description": "Hidden Stock Body 2T Lateral Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "HS_B2TL_WF": {
+        "ref_best": "",
+        "description": "Hidden Stock Body 2T Lateral White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3TC": {
+      "HS_B3TC_BF": {
+        "ref_best": "",
+        "description": "Hidden Stock Body 3T Center Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "HS_B3TC_WF": {
+        "ref_best": "",
+        "description": "Hidden Stock Body 3T Center White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "FULL STOCK MED INSERT 400": {
+    "1T": {
+      "FM_B1T_D4_BF": {
+        "ref_best": "CHA_IDS_SP_FSM_B1T_BF",
+        "description": "Full Stock Med Body 1T Depth 400 Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "FM_B1T_D4_WF": {
+        "ref_best": "CHA_IDS_SP_FSM_B1T_WF",
+        "description": "Full Stock Med Body 1T Depth 400 White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "FM_B1.5T_D4_BF": {
+        "ref_best": "CHA_IDS_SP_FSM_B1.5T_BF",
+        "description": "Full Stock Med Body 1.5T Depth 400 Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "FM_B1.5T_D4_WF": {
+        "ref_best": "CHA_IDS_SP_FSM_B1.5T_WF",
+        "description": "Full Stock Med Body 1.5T Depth 400 White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2T": {
+      "FM_B2T_D4_BF": {
+        "ref_best": "",
+        "description": "Full Stock Med Body 2T Depth 400 Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "FM_B2T_D4_WF": {
+        "ref_best": "",
+        "description": "Full Stock Med Body 2T Depth 400 White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3T": {
+      "FM_B3T_D4_BF": {
+        "ref_best": "",
+        "description": "Full Stock Med Body 3T Depth 400 Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "FM_B3T_D4_WF": {
+        "ref_best": "",
+        "description": "Full Stock Med Body 3T Depth 400 White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "FULL STOCK MED INSERT 600": {
+    "1T": {
+      "FM_B1T_D6_BF": {
+        "ref_best": "CHA_IDS_SP_FSM_B1T_BF",
+        "description": "Full Stock Med Body 1T Depth 600 Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "FM_B1T_D6_WF": {
+        "ref_best": "CHA_IDS_SP_FSM_B1T_WF",
+        "description": "Full Stock Med Body 1T Depth 600 White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "FM_B1.5T_D6_BF": {
+        "ref_best": "CHA_IDS_SP_FSM_B1.5T_BF",
+        "description": "Full Stock Med Body 1.5T Depth 600 Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "FM_B1.5T_D6_WF": {
+        "ref_best": "CHA_IDS_SP_FSM_B1.5T_WF",
+        "description": "Full Stock Med Body 1.5T Depth 600 White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2TL": {
+      "FM_B2T_D6_BF": {
+        "ref_best": "",
+        "description": "Full Stock Med Body 2T Depth 600 Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "FM_B2T_D6_WF": {
+        "ref_best": "",
+        "description": "Full Stock Med Body 2T Depth 600 White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3TC": {
+      "FM_B3T_D6_BF": {
+        "ref_best": "",
+        "description": "Full Stock Med Body 3T Depth 600 Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "FM_B3T_D6_WF": {
+        "ref_best": "",
+        "description": "Full Stock Med Body 3T Depth 600 White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "MIX STOCK INSERT": {
+    "1T": {
+      "MS_B1T_BF": {
+        "ref_best": "CHA_IDS_SP_MS_B1T_BF",
+        "description": "Mix Stock Body 1T Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "MS_B1T_WF": {
+        "ref_best": "CHA_IDS_SP_MS_B1T_WF",
+        "description": "Mix Stock Body 1T White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "MS_B1.5T_BF": {
+        "ref_best": "CHA_IDS_SP_MS_B1.5T_BF",
+        "description": "Mix Stock Body 1.5T Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "MS_B1.5T_WF": {
+        "ref_best": "CHA_IDS_SP_MS_B1.5T_WF",
+        "description": "Mix Stock Body 1.5T White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2TL": {
+      "MS_B2TL_BF": {
+        "ref_best": "",
+        "description": "Mix Stock Body 2T Lateral Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "MS_B2TL_WF": {
+        "ref_best": "",
+        "description": "Mix Stock Body 2T Lateral White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3TC": {
+      "MS_B3TC_BF": {
+        "ref_best": "",
+        "description": "Mix Stock Body 3T Center Black Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      },
+      "MS_B3TC_WF": {
+        "ref_best": "",
+        "description": "Mix Stock Body 3T Center White Finishing",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "WHITE FRAME - FULL STOCK": {
+    "1T": {
+      "WF_FS_B1T": {
+        "ref_best": "CHA_IDS_SP_WF_FS_B1T",
+        "description": "White Frame Full Stock Body 1T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "WF_FS_B1.5T": {
+        "ref_best": "CHA_IDS_SP_WF_FS_B1.5T",
+        "description": "White Frame Full Stock Body 1.5T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2T": {
+      "WF_FS_B2T": {
+        "ref_best": "CHA_IDS_SP_WF_FS_B2T",
+        "description": "White Frame Full Stock Body 2T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3T": {
+      "WF_FS_B3T": {
+        "ref_best": "CHA_IDS_SP_WF_FS_B3T",
+        "description": "White Frame Full Stock Body 3T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "WHITE FRAME - OPEN STOCK": {
+    "1T": {
+      "WF_OS_B1T": {
+        "ref_best": "CHA_IDS_SP_WF_OS_B1T",
+        "description": "White Frame Open Stock Body 1T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "WF_OS_B1.5T": {
+        "ref_best": "CHA_IDS_SP_WF_OS_B1.5T",
+        "description": "White Frame Open Stock Body 1.5T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2T": {
+      "WF_OS_B2T": {
+        "ref_best": "CHA_IDS_SP_WF_OS_B2T",
+        "description": "White Frame Open Stock Body 2T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3T": {
+      "WF_OS_B3T": {
+        "ref_best": "CHA_IDS_SP_WF_OS_B3T",
+        "description": "White Frame Open Stock Body 3T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "WHITE FRAME - MIX STOCK": {
+    "1T": {
+      "WF_MS_B1T": {
+        "ref_best": "CHA_IDS_SP_WF_MS_B1T",
+        "description": "White Frame Mix Stock Body 1T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "WF_MS_B1.5T": {
+        "ref_best": "CHA_IDS_SP_WF_MS_B1.5T",
+        "description": "White Frame Mix Stock Body 1.5T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2T": {
+      "WF_MS_B2T": {
+        "ref_best": "CHA_IDS_SP_WF_MS_B2T",
+        "description": "White Frame Mix Stock Body 2T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3T": {
+      "WF_MS_B3T": {
+        "ref_best": "CHA_IDS_SP_WF_MS_B3T",
+        "description": "White Frame Mix Stock Body 3T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "BLACK FRAME - FULL STOCK": {
+    "1T": {
+      "BF_FS_B1T": {
+        "ref_best": "",
+        "description": "Black Frame Full Stock Body 1T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "BF_FS_B1.5T": {
+        "ref_best": "",
+        "description": "Black Frame Full Stock Body 1.5T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2T": {
+      "BF_FS_B2T": {
+        "ref_best": "",
+        "description": "Black Frame Full Stock Body 2T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3T": {
+      "BF_FS_B3T": {
+        "ref_best": "",
+        "description": "Black Frame Full Stock Body 3T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "BLACK FRAME - OPEN STOCK": {
+    "1T": {
+      "BF_OS_B1T": {
+        "ref_best": "",
+        "description": "Black Frame Open Stock Body 1T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "BF_OS_B1.5T": {
+        "ref_best": "",
+        "description": "Black Frame Open Stock Body 1.5T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2T": {
+      "BF_OS_B2T": {
+        "ref_best": "",
+        "description": "Black Frame Open Stock Body 2T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3T": {
+      "BF_OS_B3T": {
+        "ref_best": "",
+        "description": "Black Frame Open Stock Body 3T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "BLACK FRAME - MIX STOCK": {
+    "1T": {
+      "BF_MS_B1T": {
+        "ref_best": "",
+        "description": "Black Frame Mix Stock Body 1T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "BF_MS_B1.5T": {
+        "ref_best": "",
+        "description": "Black Frame Mix Stock Body 1.5T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2T": {
+      "BF_MS_B2T": {
+        "ref_best": "",
+        "description": "Black Frame Mix Stock Body 2T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3T": {
+      "BF_MS_B3T": {
+        "ref_best": "",
+        "description": "Black Frame Mix Stock Body 3T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "STAGING 400": {
+    "1T": {
+      "TS_B1T_D4": {
+        "ref_best": "CHA_IDS_SP_ST_B1T_D4",
+        "description": "Top Staging Body 1T Depth 400",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "TS_B1.5T_D4": {
+        "ref_best": "CHA_IDS_SP_ST_B1.5T_D4",
+        "description": "Top Staging Body 1.5T Depth 400",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2T": {
+      "TS_B2T_D4": {
+        "ref_best": "CHA_IDS_SP_ST_B2T_D4",
+        "description": "Top Staging Body 2T Depth 400",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3T": {
+      "TS_B3T_D4": {
+        "ref_best": "CHA_IDS_SP_ST_B3T_D4",
+        "description": "Top Staging Body 3T Depth 400",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "STAGING 600": {
+    "1T": {
+      "TS_B1T_D6": {
+        "ref_best": "CHA_IDS_SP_ST_B1T_D6",
+        "description": "Top Staging Body 1T Depth 600",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "TS_B1.5T_D6": {
+        "ref_best": "CHA_IDS_SP_ST_B1.5T_D6",
+        "description": "Top Staging Body 1.5T Depth 600",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2T": {
+      "TS_B2T_D6": {
+        "ref_best": "CHA_IDS_SP_ST_B2T_D6",
+        "description": "Top Staging Body 2T Depth 600",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3T": {
+      "TS_B3T_D6": {
+        "ref_best": "CHA_IDS_SP_ST_B3T_D6",
+        "description": "Top Staging Body 3T Depth 600",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "SHELFTALKERS": {
+    "1T": {
+      "SFT_SET_B1T": {
+        "ref_best": "",
+        "description": "ShelFTalker SET 1T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "SFT_SET_B1.5T": {
+        "ref_best": "",
+        "description": "ShelFTalker SET 1.5T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2T": {
+      "SFT_SET_B2T": {
+        "ref_best": "",
+        "description": "ShelFTalker SET 2T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3T": {
+      "SFT_SET_B3T": {
+        "ref_best": "",
+        "description": "ShelFTalker SET 3T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "BACK PANEL CUSTOM": {
+    "1T": {
+      "CUS_BP_B1T": {
+        "ref_best": "",
+        "description": "Custom Back Panel Body 1T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "CUS_BP_B1,5T": {
+        "ref_best": "",
+        "description": "Custom Back Panel Body 1,5T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2T": {
+      "CUS_BP_B2T": {
+        "ref_best": "",
+        "description": "Custom Back Panel Body 2T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3T": {
+      "CUS_BP_B3T": {
+        "ref_best": "",
+        "description": "Custom Back Panel Body 3T",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "BASE BOARD CUSTOM 400": {
+    "1T": {
+      "CUS_BB_B1T_D4": {
+        "ref_best": "",
+        "description": "Custom Base Board Body 1T Depth 400",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "CUS_BB_B1,5T_D4": {
+        "ref_best": "",
+        "description": "Custom Base Board Body 1,5T Depth 400",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2T": {
+      "CUS_BB_B2T_D4": {
+        "ref_best": "",
+        "description": "Custom Base Board Body 2T Depth 400",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3T": {
+      "CUS_BB_B3T_D4": {
+        "ref_best": "",
+        "description": "Custom Base Board Body 3T Depth 400",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "BASE BOARD CUSTOM 600": {
+    "1T": {
+      "CUS_BB_B1T_D6": {
+        "ref_best": "",
+        "description": "Custom Base Board Body 1T Depth 600",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "1.5T": {
+      "CUS_BB_B1,5T_D6": {
+        "ref_best": "",
+        "description": "Custom Base Board Body 1,5T Depth 600",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "2T": {
+      "CUS_BB_B2T_D6": {
+        "ref_best": "",
+        "description": "Custom Base Board Body 2T Depth 600",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "3T": {
+      "CUS_BB_B3T_D6": {
+        "ref_best": "",
+        "description": "Custom Base Board Body 3T Depth 600",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "HOTSPOT REGULAR": {
+    "Double Complete Doors": {
+      "BHR_D4_CD": {
+        "ref_best": "",
+        "description": "HotSpot Regular Complete Doors",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "Half Door + Complete Door": {
+      "BHR_D4_MD": {
+        "ref_best": "",
+        "description": "HotSpot Regular Mix Door",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "Double Half Doors": {
+      "BHR_D4_HD": {
+        "ref_best": "",
+        "description": "HotSpot Regular Half Doors",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "Visual Set": {
+      "BHR_D4_VS": {
+        "ref_best": "",
+        "description": "HotSpot Regular Visual Set",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "Base": {
+      "BH_R_B": {
+        "ref_best": "",
+        "description": "HotSpot Regular Base",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "Wall": {
+      "BH_R_W": {
+        "ref_best": "",
+        "description": "HotSpot Regular Wall",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    }
+  },
+  "HOTSPOT LARGE": {
+    "Double Complete Doors": {
+      "BHL_D4_CD": {
+        "ref_best": "",
+        "description": "HotSpot Large Complete Doors",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "Half Door + Complete Door": {
+      "BHL_D4_MD": {
+        "ref_best": "",
+        "description": "HotSpot Large Mix Door",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "Double Half Doors": {
+      "BHL_D4_HD": {
+        "ref_best": "",
+        "description": "HotSpot Large Half Doors",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "Visual Set": {
+      "BHL_D4_VS": {
+        "ref_best": "",
+        "description": "HotSpot Large Visual Set",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "Base": {
+      "BHL_D4_B": {
+        "ref_best": "",
+        "description": "HotSpot Large Base",
+        "imagem_geral": "images/placeholder.png",
+        "components": []
+      }
+    },
+    "Wall": {
+      "BHL_D4_W": {
+        "ref_best": "",
+        "description": "HotSpot Large Wall",
         "imagem_geral": "images/placeholder.png",
         "components": []
       }
