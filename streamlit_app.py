@@ -5,9 +5,9 @@ import streamlit as st
 import json
 import io
 from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import A6, landscape # MUDANÇA: Importar A6 e landscape
 from reportlab.lib.units import mm
-from reportlab.graphics.barcode import qr, code128 # Usar a importação correta
+from reportlab.graphics.barcode import qr, code128
 from reportlab.graphics.shapes import Drawing
 from reportlab.graphics import renderPDF
 from reportlab.lib.colors import black
@@ -30,78 +30,82 @@ def load_data():
         return {}
 
 # =============================================================================
-# VERSÃO 7: FUNÇÃO GERAR_PDF COM CORREÇÃO FINAL DO CÓDIGO DE BARRAS
+# VERSÃO FINAL: FUNÇÃO GERAR_PDF
 # =============================================================================
-def gerar_pdf_preciso(product_ref, product_details, quantity):
-    """Gera um PDF com um layout de etiqueta preciso, replicando a imagem final."""
+def gerar_pdf_final(product_ref, product_details, quantity):
+    """Gera um PDF com o layout final e tamanho de página A6 (1/4 de A4)."""
     buffer = io.BytesIO()
-    largura_pagina, altura_pagina = A4
-    p = canvas.Canvas(buffer, pagesize=A4)
+    
+    # MUDANÇA: Usar A6 em modo paisagem para o tamanho da página/etiqueta
+    label_width, label_height = landscape(A6)
+    
+    p = canvas.Canvas(buffer, pagesize=(label_width, label_height))
     p.setTitle(f"Etiquetas para {product_ref}")
 
     for i in range(quantity):
-        # --- Definições Globais da Etiqueta ---
-        label_width = 140*mm
-        label_height = 80*mm
-        x0 = (largura_pagina - label_width) / 2
-        y0 = (altura_pagina - label_height) / 2
+        # Como a página é a etiqueta, as coordenadas são diretas (origem no canto inferior esquerdo)
+        # Deixar uma pequena margem interna
+        margem = 1 * mm 
+        x0 = margem
+        y0 = margem
         
         p.saveState()
         p.setStrokeColor(black)
         
         # --- Desenho da Grelha Estrutural ---
         p.setLineWidth(1)
-        p.rect(x0, y0, label_width, label_height)
+        p.rect(x0, y0, label_width - 2 * margem, label_height - 2 * margem)
 
         p.setLineWidth(0.3)
         v_line1_x = x0 + 25*mm
         v_line2_x = x0 + label_width - 35*mm
         h_line_y = y0 + 35*mm
         
-        p.line(v_line1_x, y0, v_line1_x, y0 + label_height)
-        p.line(v_line2_x, y0, v_line2_x, y0 + label_height)
+        p.line(v_line1_x, y0, v_line1_x, y0 + label_height - 2*margem)
+        p.line(v_line2_x, y0, v_line2_x, y0 + label_height - 2*margem)
         p.line(v_line1_x, h_line_y, v_line2_x, h_line_y)
         
         # --- Secção Esquerda: "Made in Portugal" e Código de Barras ---
         p.setFont("Helvetica", 6)
-        p.drawString(x0 + 2*mm, y0 + label_height - 5*mm, "Made in Portugal")
-        p.drawString(x0 + 2*mm, y0 + label_height - 8*mm, "© Chanel")
+        p.drawString(x0 + 2*mm, y0 + label_height - 7*mm, "Made in Portugal")
+        p.drawString(x0 + 2*mm, y0 + label_height - 10*mm, "© Chanel")
         
-        # ## --- SECÇÃO DO CÓDIGO DE BARRAS (VERSÃO FINAL COM CORREÇÕES) --- ##
+        # ## --- CÓDIGO DE BARRAS: CORREÇÃO FINAL DE CONTEÚDO E DIMENSÕES --- ##
+        
+        # MUDANÇA 1: O valor a ser codificado é apenas a referência, sem prefixos.
         barcode_value = product_ref
         
-        # MUDANÇA 1: Voltar a usar a classe correta 'code128.Code128'
-        # MUDANÇA 2: Manter os ajustes de dimensões para o layout
-        barcode = code128.Code128(barcode_value, barHeight=65*mm, barWidth=0.20*mm, humanReadable=False)
+        # MUDANÇA 2: Reduzir drasticamente a largura das barras (barWidth) e ajustar a altura (barHeight)
+        # para que o código de barras total seja alto e fino.
+        barcode = code128.Code128(barcode_value, barHeight=20*mm, barWidth=0.14*mm, humanReadable=False)
         
         barcode_width = barcode.width
-        
+        barcode_height = barcode.height
+
         center_x = x0 + 12.5*mm
-        center_y = y0 + 40*mm
+        center_y = y0 + 38*mm # Ajustado para caber melhor na célula
         
         p.saveState()
         p.translate(center_x, center_y)
         p.rotate(90)
-        barcode.drawOn(p, -barcode_width/2, -barcode.barHeight/2)
+        barcode.drawOn(p, -barcode_width/2, -barcode_height/2)
         p.restoreState()
         
         p.setFont("Helvetica", 7)
-        p.drawCentredString(center_x, y0 + 5*mm, barcode_value)
-        # ## --- FIM DA SECÇÃO CORRIGIDA --- ##
-
-        # --- Secção Central Superior: Imagem do Produto ---
+        p.drawCentredString(center_x, y0 + 10*mm, barcode_value)
+        
+        # --- Secção Central Superior: Imagem ---
         img_x, img_y = v_line1_x, h_line_y
-        img_w, img_h = v_line2_x - v_line1_x, label_height - (h_line_y - y0)
+        img_w, img_h = v_line2_x - v_line1_x, (y0 + label_height - 2*margem) - h_line_y
         try:
             path_img = product_details.get("imagem", "images/placeholder.png")
             p.drawImage(path_img, img_x, img_y, width=img_w, height=img_h, preserveAspectRatio=True, anchor='c')
         except IOError:
             p.drawCentredString(img_x + img_w/2, img_y + img_h/2, "Imagem não encontrada.")
 
-        # --- Secção Central Inferior: Bloco de Texto ---
+        # --- Secção Central Inferior: Texto ---
         text_x = v_line1_x + 4*mm
         text_y = h_line_y - 8*mm
-        
         p.setFont("Helvetica-Bold", 10)
         p.drawString(text_x, text_y, "PRODUCT NAME")
         p.setLineWidth(1)
@@ -113,7 +117,7 @@ def gerar_pdf_preciso(product_ref, product_details, quantity):
 
         # --- Secção Direita: QR Code e Caixa "0" ---
         box_x, box_y = v_line2_x, h_line_y
-        box_w, box_h = label_width - (v_line2_x - x0), label_height - (h_line_y - y0)
+        box_w, box_h = (x0 + label_width - 2*margem) - v_line2_x, (y0 + label_height - 2*margem) - h_line_y
         p.setLineWidth(0.3)
         p.rect(box_x, box_y, box_w, box_h, fill=0)
         p.setFont("Helvetica", 12)
@@ -122,11 +126,12 @@ def gerar_pdf_preciso(product_ref, product_details, quantity):
         qr_x, qr_y = v_line2_x, y0
         qr_w, qr_h = box_w, h_line_y - y0
         
-        qr_data = f"REF:{product_ref}"
+        # MUDANÇA 3: Garantir que o QR Code também só tem a referência.
+        qr_data = product_ref
         qr_code = qr.QrCodeWidget(qr_data)
         qr_bounds = qr_code.getBounds()
         qr_code_width = qr_bounds[2] - qr_bounds[0]
-        qr_size = min(qr_w, qr_h) - 4*mm
+        qr_size = min(qr_w, qr_h) - 2*mm
         escala = qr_size / qr_code_width
         
         desenho = Drawing(qr_size, qr_size, transform=[escala, 0, 0, escala, 0, 0])
@@ -151,6 +156,7 @@ st.title('Gerador de Etiquetas de Produção')
 data = load_data()
 
 if data:
+    # ... (o resto do código da interface mantém-se igual)
     level1_options = list(data.keys())
     selected_level1 = st.selectbox('Passo 1: Selecione a Categoria Principal', level1_options)
     level2_options = list(data.get(selected_level1, {}).keys())
@@ -165,7 +171,8 @@ if data:
                 details = data[selected_level1][selected_level2][selected_ref]
                 if 'imagem' not in details:
                     details['imagem'] = "images/placeholder.png"
-                pdf_buffer = gerar_pdf_preciso(selected_ref, details, quantity)
+                # Chamar a nova função de PDF final
+                pdf_buffer = gerar_pdf_final(selected_ref, details, quantity)
                 st.download_button(
                     label=f"✔️ Download de {quantity} Etiqueta(s) em PDF",
                     data=pdf_buffer,
