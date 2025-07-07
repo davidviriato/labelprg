@@ -7,7 +7,7 @@ import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
-from reportlab.graphics.barcode import qr
+from reportlab.graphics.barcode import qr, code128
 from reportlab.graphics.shapes import Drawing
 from reportlab.graphics import renderPDF
 from reportlab.lib.colors import black
@@ -29,56 +29,92 @@ def load_data():
         st.error("ERRO: O ficheiro 'data.json' contém um erro de formatação. Verifique a sintaxe (ex: vírgulas, aspas).")
         return {}
 
-def gerar_pdf(product_ref, product_details):
-    """Gera um PDF com um layout de etiqueta preciso, replicando a imagem."""
+# NOVA VERSÃO DA FUNÇÃO GERAR_PDF - REFEITA PARA O NOVO LAYOUT
+def gerar_pdf(product_ref, product_details, quantity):
+    """Gera um PDF com a mesma etiqueta repetida 'quantity' vezes."""
     buffer = io.BytesIO()
     largura_pagina, altura_pagina = A4
     p = canvas.Canvas(buffer, pagesize=A4)
-    
-    components = product_details.get('components', [])
-    total_componentes = len(components)
-    
     p.setTitle(f"Etiquetas para {product_ref}")
 
-    for i, component in enumerate(components):
-        label_width = 140*mm
-        label_height = 95*mm
+    # Loop para criar uma página por cada etiqueta pedida
+    for i in range(quantity):
+        # --- Definição da Área e Coordenadas da Etiqueta ---
+        label_width = 150*mm
+        label_height = 100*mm
         x0 = (largura_pagina - label_width) / 2
         y0 = (altura_pagina - label_height) / 2
         
         p.saveState()
         p.setStrokeColor(black)
         
+        # Borda Exterior Grossa
         p.setLineWidth(1)
         p.rect(x0, y0, label_width, label_height)
 
+        # --- Divisões Internas Finas ---
         p.setLineWidth(0.5)
-        v_line_x = x0 + label_width * 0.65
-        p.line(v_line_x, y0, v_line_x, y0 + label_height)
-
-        h_line_y = y0 + label_height * 0.40
-        p.line(x0, h_line_y, x0 + label_width, h_line_y)
+        # Linha vertical esquerda (para o código de barras)
+        v_line1_x = x0 + 20*mm
+        p.line(v_line1_x, y0, v_line1_x, y0 + label_height)
         
-        img_x, img_y, img_w, img_h = x0, h_line_y, v_line_x - x0, label_height - (h_line_y - y0)
-        try:
-            path_img_componente = component.get("imagem")
-            if path_img_componente:
-                p.drawImage(path_img_componente, img_x + 2*mm, img_y + 2*mm, width=img_w - 4*mm, height=img_h - 4*mm, preserveAspectRatio=True, anchor='c')
-        except IOError:
-            p.drawString(img_x + 5*mm, img_y + img_h/2, "Imagem não encontrada.")
+        # Linha vertical direita (para o QR code)
+        v_line2_x = x0 + label_width - 35*mm
+        p.line(v_line2_x, y0, v_line2_x, y0 + label_height)
+        
+        # Linha horizontal (para separar imagem de texto)
+        h_line_y = y0 + 40*mm
+        p.line(v_line1_x, h_line_y, v_line2_x, h_line_y)
 
-        icon_x, icon_y, icon_w, icon_h = v_line_x, h_line_y, label_width - (v_line_x - x0), label_height - (h_line_y - y0)
-        try:
-            path_img_geral = product_details.get("imagem_geral")
-            if path_img_geral:
-                p.drawImage(path_img_geral, icon_x + 2*mm, icon_y + icon_h * 0.5, width=icon_w - 4*mm, height=icon_h * 0.5, preserveAspectRatio=True, anchor='n')
-        except IOError:
-            pass
-        p.setFont("Helvetica-Bold", 36)
-        p.drawCentredString(icon_x + icon_w/2, icon_y + icon_h * 0.25, f"{i + 1}/{total_componentes}")
+        # --- Topo Esquerdo: Made in Portugal ---
+        p.setFont("Helvetica", 7)
+        p.drawString(x0 + 2*mm, y0 + label_height - 4*mm, "Made in Portugal")
+        p.drawString(x0 + 2*mm, y0 + label_height - 7*mm, "© Chanel")
 
-        qr_x, qr_y, qr_w, qr_h = v_line_x, y0, label_width - (v_line_x - x0), h_line_y - y0
-        qr_data = f"REF:{product_ref}, COMP:{component.get('name', '')}"
+        # --- Lado Esquerdo: Código de Barras Vertical ---
+        barcode_value = product_ref
+        barcode = code128.Code128(barcode_value, barHeight=label_height - 15*mm, barWidth=0.3*mm)
+        p.saveState()
+        p.translate(x0 + 10*mm, y0 + label_height - 5*mm)
+        p.rotate(90)
+        barcode.drawOn(p, 0, 0)
+        p.restoreState()
+        # Escrever texto do código de barras
+        p.setFont("Helvetica", 8)
+        p.drawCentredString(x0 + 10*mm, y0 + 5*mm, barcode_value)
+        
+        # --- Centro Superior: Imagem do Componente ---
+        img_x = v_line1_x
+        img_y = h_line_y
+        img_w = v_line2_x - v_line1_x
+        img_h = label_height - (h_line_y - y0)
+        try:
+            path_img_componente = product_details.get("imagem", "images/placeholder.png")
+            p.drawImage(path_img_componente, img_x + 2*mm, img_y + 2*mm, width=img_w - 4*mm, height=img_h - 4*mm, preserveAspectRatio=True, anchor='c')
+        except IOError:
+            p.drawCentredString(img_x + img_w/2, img_y + img_h/2, "Imagem não encontrada.")
+
+        # --- Centro Inferior: Bloco de Texto ---
+        text_x = v_line1_x + 3*mm
+        text_y = h_line_y - 7*mm
+        
+        p.setFont("Helvetica-Bold", 11)
+        p.drawString(text_x, text_y, "PRODUCT NAME")
+        p.setLineWidth(1.5)
+        p.line(text_x, text_y - 2*mm, v_line2_x - 3*mm, text_y - 2*mm)
+        
+        p.setFont("Helvetica-Bold", 12)
+        p.drawString(text_x, text_y - 9*mm, product_ref)
+        p.setFont("Helvetica", 11)
+        p.drawString(text_x, text_y - 15*mm, product_details.get('description', ''))
+        
+        # --- Lado Direito: QR Code e caixa "0" ---
+        qr_x = v_line2_x
+        qr_y = y0
+        qr_w = label_width - (v_line2_x - x0)
+        qr_h = h_line_y
+        
+        qr_data = f"REF:{product_ref}"
         qr_code = qr.QrCodeWidget(qr_data)
         qr_bounds = qr_code.getBounds()
         qr_code_width = qr_bounds[2] - qr_bounds[0]
@@ -86,38 +122,16 @@ def gerar_pdf(product_ref, product_details):
         escala = qr_size / qr_code_width
         desenho = Drawing(qr_size, qr_size, transform=[escala, 0, 0, escala, 0, 0])
         desenho.add(qr_code)
-        renderPDF.draw(desenho, p, qr_x + (qr_w - qr_size) / 2, qr_y + (qr_h - qr_size) / 2)
+        renderPDF.draw(desenho, p, qr_x + (qr_w - qr_size)/2, qr_y + (qr_h - qr_size)/2)
         
-        text_x = x0 + 3*mm
-        text_y = h_line_y - 7*mm
-        
-        p.setFont("Helvetica-Bold", 10)
-        p.drawString(text_x, text_y, "PRODUCT NAME")
-        p.setFont("Helvetica-Bold", 9)
-        p.drawString(text_x, text_y - 6*mm, product_ref)
-        p.setFont("Helvetica", 9)
-        p.drawString(text_x, text_y - 11*mm, product_details.get('description', ''))
-
-        p.setLineWidth(1.5)
-        sep_y = text_y - 15*mm
-        p.line(x0, sep_y, v_line_x, sep_y)
         p.setLineWidth(0.5)
-
-        p.setFont("Helvetica-Bold", 10)
-        p.drawString(text_x, sep_y - 6*mm, "DIMENSION (component)")
-        p.setFont("Helvetica", 9)
-        p.drawString(text_x, sep_y - 11*mm, component.get('dims', ''))
-
-        box_0_y = y0
-        box_0_h = h_line_y - y0
-        box_0_w = 10*mm
-        box_0_x = v_line_x - box_0_w
-        p.line(box_0_x, box_0_y, box_0_x, box_0_y + box_0_h)
-        p.drawCentredString(box_0_x + box_0_w/2, y0 + qr_h/2, "0")
+        p.rect(v_line2_x, h_line_y, qr_w, label_height - qr_h, fill=0)
+        p.drawCentredString(v_line2_x + qr_w/2, h_line_y + (label_height - h_line_y)/2, "0")
 
         p.restoreState()
         
-        if i < total_componentes - 1:
+        # Adiciona nova página para a próxima etiqueta
+        if i < quantity - 1:
             p.showPage()
             
     p.save()
@@ -143,27 +157,28 @@ if data:
     ref_options = list(data.get(selected_level1, {}).get(selected_level2, {}).keys())
     selected_ref = st.selectbox('Passo 3: Selecione a Referência Final', ref_options)
 
+    # NOVO CAMPO PARA QUANTIDADE
+    quantity = st.number_input("Quantidade de etiquetas a imprimir", min_value=1, value=1, step=1)
+
     st.markdown("---")
 
     if st.button('Gerar Etiquetas em PDF', type="primary", use_container_width=True):
         if selected_ref:
             try:
                 details = data[selected_level1][selected_level2][selected_ref]
-                
-                # ===== ESTA É A NOVA VERIFICAÇÃO INTELIGENTE =====
-                if not details.get('components'):
-                    st.warning("Este produto não tem componentes definidos no 'data.json'. Não é possível gerar etiquetas.")
-                else:
-                    # Se houver componentes, gera o PDF e o botão de download
-                    pdf_buffer = gerar_pdf(selected_ref, details)
-                    st.download_button(
-                        label="✔️ Download do PDF pronto",
-                        data=pdf_buffer,
-                        file_name=f"etiquetas_{selected_ref}.pdf",
-                        mime="application/pdf"
-                    )
-                # ===============================================
+                # Adicionar um campo 'imagem' placeholder se não existir
+                if 'imagem' not in details:
+                    details['imagem'] = "images/placeholder.png"
 
+                # Chamar a função com a quantidade
+                pdf_buffer = gerar_pdf(selected_ref, details, quantity)
+
+                st.download_button(
+                    label=f"✔️ Download de {quantity} Etiqueta(s) em PDF",
+                    data=pdf_buffer,
+                    file_name=f"etiquetas_{selected_ref}x{quantity}.pdf",
+                    mime="application/pdf"
+                )
             except Exception as e:
                 st.error(f"Ocorreu um erro ao gerar o PDF: {e}")
                 st.exception(e)
