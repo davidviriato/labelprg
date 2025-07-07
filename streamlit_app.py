@@ -30,7 +30,7 @@ def load_data():
         return {}
 
 # =============================================================================
-# VERSÃO 4: FUNÇÃO GERAR_PDF COM CÓDIGO DE BARRAS CORRIGIDO
+# VERSÃO 5: FUNÇÃO GERAR_PDF COM CÓDIGO DE BARRAS DE TAMANHO DINÂMICO
 # =============================================================================
 def gerar_pdf_preciso(product_ref, product_details, quantity):
     """Gera um PDF com um layout de etiqueta preciso, replicando a imagem final."""
@@ -67,32 +67,36 @@ def gerar_pdf_preciso(product_ref, product_details, quantity):
         p.drawString(x0 + 2*mm, y0 + label_height - 5*mm, "Made in Portugal")
         p.drawString(x0 + 2*mm, y0 + label_height - 8*mm, "© Chanel")
         
-        # ## --- SECÇÃO DO CÓDIGO DE BARRAS (VERSÃO CORRIGIDA) --- ##
-        barcode_value = product_ref
-        barcode = code128.Code128(barcode_value, barHeight=45*mm, barWidth=0.25*mm, humanReadable=False)
-        
-        # Obter as dimensões exatas do código de barras gerado
-        barcode_width = barcode.width
-        barcode_height = barcode.height
-
-        # Calcular o centro da célula onde o código de barras vai ficar
+        # ## --- SECÇÃO DO CÓDIGO DE BARRAS (VERSÃO FINAL COM LARGURA CORRIGIDA) --- ##
         barcode_cell_width = v_line1_x - x0
-        barcode_cell_height = label_height
+        barcode_text_space = 15*mm # Espaço no fundo para o texto da REF
+        
+        # A altura do código de barras tem de ser menor que a altura da célula, menos o espaço para o texto
+        barcode_h = label_height - barcode_text_space 
+        
+        # A largura do código de barras (que será a sua altura depois de rodado) tem de caber na célula
+        barcode_w = barcode_cell_width - 4*mm # Deixar 2mm de margem de cada lado
+
+        barcode_value = product_ref
+        barcode = code128.Code128(barcode_value, barHeight=barcode_h, barWidth=0.22*mm, humanReadable=False)
+        
+        # Obter a largura real do código de barras gerado
+        actual_barcode_width = barcode.width
+        
+        # Posição central da célula
         center_x = x0 + barcode_cell_width / 2
-        center_y = y0 + barcode_cell_height / 2
+        center_y = y0 + barcode_text_space + (label_height - barcode_text_space) / 2 # Centrar na área acima do texto
 
         p.saveState()
-        # Mover a origem do canvas para o centro da célula
         p.translate(center_x, center_y)
-        # Rodar 90 graus
         p.rotate(90)
-        # Desenhar o código de barras centrado na nova origem
-        barcode.drawOn(p, -barcode_width/2, -barcode_height/2)
+        # Desenhar o código de barras centrado na origem (que agora é o centro da célula)
+        barcode.drawOn(p, -actual_barcode_width/2, -barcode.barHeight/2)
         p.restoreState()
         # ## --- FIM DA SECÇÃO CORRIGIDA --- ##
 
         p.setFont("Helvetica", 7)
-        p.drawCentredString(x0 + 12.5*mm, y0 + 10*mm, barcode_value)
+        p.drawCentredString(center_x, y0 + 7*mm, barcode_value)
 
         # --- Secção Central Superior: Imagem do Produto ---
         img_x, img_y = v_line1_x, h_line_y
